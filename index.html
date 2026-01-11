@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>出品ジャンル診断 | ココナラコンテンツマーケット</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- スタート画面 -->
+        <section id="start-screen" class="screen active">
+            <div class="start-content">
+                <div class="logo-area">
+                    <span class="material-icons logo-icon">auto_awesome</span>
+                </div>
+                <h1 class="main-title">
+                    <span class="title-sub">ココナラコンテンツマーケット</span>
+                    <span class="title-main">出品ジャンル診断</span>
+                </h1>
+                <p class="description">
+                    8つの質問に答えるだけで、<br>
+                    あなたにピッタリの出品カテゴリがわかります
+                </p>
+                <div class="time-info">
+                    <span class="material-icons">schedule</span>
+                    <span>所要時間 約2分</span>
+                </div>
+                <button class="start-btn" onclick="startDiagnosis()">
+                    <span>診断をはじめる</span>
+                    <span class="material-icons">arrow_forward</span>
+                </button>
+            </div>
+            <div class="decoration-circles">
+                <div class="circle circle-1"></div>
+                <div class="circle circle-2"></div>
+                <div class="circle circle-3"></div>
+            </div>
+        </section>
+
+        <!-- 質問画面 -->
+        <section id="question-screen" class="screen">
+            <div class="question-header">
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span id="current-q">1</span> / 8
+                    </div>
+                </div>
+            </div>
+            <div class="question-content">
+                <div class="question-number" id="question-number">Q1</div>
+                <h2 class="question-text" id="question-text"></h2>
+                <div class="options-container" id="options-container">
+                    <!-- 選択肢がJSで挿入される -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ローディング画面 -->
+        <section id="loading-screen" class="screen">
+            <div class="loading-content">
+                <div class="loading-animation">
+                    <div class="loading-circle"></div>
+                    <span class="material-icons loading-icon">psychology</span>
+                </div>
+                <p class="loading-text">診断結果を分析中...</p>
+                <div class="loading-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 結果画面 -->
+        <section id="result-screen" class="screen">
+            <div class="result-content">
+                <div class="result-header">
+                    <span class="result-label">あなたのタイプは...</span>
+                </div>
+                <div class="result-card" id="result-card">
+                    <div class="type-image-container">
+                        <img id="type-image" src="" alt="タイプイラスト" class="type-image">
+                    </div>
+                    <h2 class="type-name" id="type-name"></h2>
+                    <p class="type-tagline" id="type-tagline"></p>
+                </div>
+
+                <div class="category-section">
+                    <h3 class="section-title">
+                        <span class="material-icons">stars</span>
+                        おすすめカテゴリ TOP3
+                    </h3>
+                    <div class="category-list" id="category-list">
+                        <!-- カテゴリがJSで挿入される -->
+                    </div>
+                </div>
+
+                <div class="notice-section" id="notice-section" style="display: none;">
+                    <div class="notice-box">
+                        <span class="material-icons">info</span>
+                        <p>AI生成イラスト・画像の販売は禁止されています。<br>「AI活用ノウハウ」「使い方解説」の出品はOKです。</p>
+                    </div>
+                </div>
+
+                <div class="share-section">
+                    <h3 class="section-title">
+                        <span class="material-icons">share</span>
+                        結果をシェア
+                    </h3>
+                    <div class="share-buttons">
+                        <button class="share-btn x-btn" onclick="shareToX()">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                            <span>Xでシェア</span>
+                        </button>
+                        <button class="share-btn download-btn" onclick="downloadResult()">
+                            <span class="material-icons">download</span>
+                            <span>画像を保存</span>
+                        </button>
+                    </div>
+                </div>
+
+                <button class="retry-btn" onclick="restartDiagnosis()">
+                    <span class="material-icons">refresh</span>
+                    <span>もう一度診断する</span>
+                </button>
+
+                <a href="https://coconala.com/contents_market" target="_blank" class="coconala-link">
+                    <span class="material-icons">storefront</span>
+                    <span>ココナラコンテンツマーケットを見る</span>
+                    <span class="material-icons">open_in_new</span>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- シェア画像生成用のキャンバス（非表示） -->
+    <canvas id="share-canvas" width="1080" height="1080" style="display: none;"></canvas>
+
+    <script src="app.js"></script>
+</body>
+</html>

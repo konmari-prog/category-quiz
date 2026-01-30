@@ -34,14 +34,22 @@ AIが書いたコードを保存しただけでは、まだあなたのパソコ
 
 ## 🚀 4. GitHubページで無料公開する手順
 
-1. **GitHubアカウントを作成**
-    - [GitHub公式サイト](https://github.com/)で登録（無料）
-2. **リポジトリ（公開用の箱）を作成**
-    - 「New Repository」からプロジェクト名を付けて作成。公開設定（Public）を忘れずに。
-3. **ファイルをアップロード**
-    - 作成した箱の中に、AIが書いたHTMLファイルをドラッグ＆ドロップ。
-4. **公開設定をオンにする**
-    - 「Settings」>「Pages」で、公開するブランチ（通常はmain）を選択して保存。
+### ① GitHubアカウントを作成
+- [GitHub公式サイト](https://github.com/)で登録（無料）
+
+### ② リポジトリ（公開用の箱）を作成
+- 画面右上の「**+**」 ＞ 「**New repository**」
+- **Repository name**: 好きな名前を英数字で（例：`coconala-tool`）
+- **重要**: 「**Public**」を選択（無料で公開するための必須条件です）
+- 「Create repository」をクリック
+
+### ③ ファイルをアップロード
+- 「uploading an existing file」から、AIが書いた `index.html` をアップロード。
+- 「Commit changes」で保存。
+
+### ④ 公開設定をオンにする
+- 上部「**Settings**」 ＞ 左サイドバー「**Pages**」をクリック。
+- **Branch** を「**main**」、フォルダを「**/(root)**」に設定して「**Save**」。
 
 ✅ **数分待つとURLが発行され、自分のサイトが公開されます！**
 

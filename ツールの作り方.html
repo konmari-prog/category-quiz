@@ -133,36 +133,70 @@
                 <div class="w-1 bg-accent/20 rounded-full"></div>
                 <div>
                     <p class="text-sm text-gray-600 leading-relaxed">
-                        AIが書いたコードを保存して、ネット上で誰でも見られるようにする「ホスティング」という作業が必要です。
-                        今回は**「GitHub Pages」**という無料の仕組みを使います。
+                        AIが書いたコードを保存して、ネット上で誰でも見られるようにする「ホスティング」が必要です。
+                        今回は**「GitHub Pages」**という完全無料の仕組みを使います。
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- Step 4: GitHub Pages -->
+        <!-- Step 4: GitHub Pages Detail -->
         <section class="p-6 pt-0">
             <div class="flex items-center gap-3 mb-4">
                 <span
                     class="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white text-sm font-bold">4</span>
                 <h3 class="text-lg font-bold text-primary">無料公開の4ステップ</h3>
             </div>
-            <div class="space-y-4">
-                <div class="bg-white dark:bg-gray-900 rounded-xl p-4 border border-gray-100">
+            <div class="space-y-6">
+                <!-- 4-1 -->
+                <div class="relative pl-8 border-l-2 border-gray-100 dark:border-gray-800 pb-2">
+                    <div
+                        class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-accent border-4 border-white dark:border-background-dark">
+                    </div>
                     <p class="text-xs font-bold text-accent mb-1">Step 4-1</p>
-                    <p class="text-sm font-bold">GitHubにアカウントを作る</p>
+                    <p class="text-sm font-bold mb-2">GitHubにログインする</p>
+                    <p class="text-xs text-gray-500">[GitHub公式サイト](https://github.com/)にアクセスしてログイン、または新規登録をします。</p>
                 </div>
-                <div class="bg-white dark:bg-gray-900 rounded-xl p-4 border border-gray-100">
+                <!-- 4-2 -->
+                <div class="relative pl-8 border-l-2 border-gray-100 dark:border-gray-800 pb-2">
+                    <div
+                        class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-accent border-4 border-white dark:border-background-dark">
+                    </div>
                     <p class="text-xs font-bold text-accent mb-1">Step 4-2</p>
-                    <p class="text-sm font-bold">「New Repository」から名前をつけて箱を作る</p>
+                    <p class="text-sm font-bold mb-2">リポジトリ（箱）を作る</p>
+                    <ul class="text-xs text-gray-500 space-y-1 list-disc pl-4">
+                        <li>右上「+」ボタン ＞ 「**New repository**」</li>
+                        <li>**Repository name**: 英数字で名前をつける（例：`category-diagnosis`）</li>
+                        <li>**Public** を選択（無料で公開するために必須）</li>
+                        <li>「Create repository」をクリック</li>
+                    </ul>
                 </div>
-                <div class="bg-white dark:bg-gray-900 rounded-xl p-4 border border-gray-100">
+                <!-- 4-3 -->
+                <div class="relative pl-8 border-l-2 border-gray-100 dark:border-gray-800 pb-2">
+                    <div
+                        class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-accent border-4 border-white dark:border-background-dark">
+                    </div>
                     <p class="text-xs font-bold text-accent mb-1">Step 4-3</p>
-                    <p class="text-sm font-bold">HTMLファイルをアップロードする</p>
+                    <p class="text-sm font-bold mb-2">ファイルをアップロード</p>
+                    <p class="text-xs text-gray-500">
+                        「uploading an existing file」をクリックして、AIが作成した `index.html` をドラッグ＆ドロップします。最後に「Commit changes」で保存。
+                    </p>
                 </div>
-                <div class="bg-white dark:bg-gray-900 rounded-xl p-4 border border-gray-100">
+                <!-- 4-4 -->
+                <div class="relative pl-8">
+                    <div
+                        class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-accent border-4 border-white dark:border-background-dark">
+                    </div>
                     <p class="text-xs font-bold text-accent mb-1">Step 4-4</p>
-                    <p class="text-sm font-bold">Settings > Pages で「公開」をオンにする</p>
+                    <p class="text-sm font-bold mb-2">表示設定（Pages）をオンに</p>
+                    <ul class="text-xs text-gray-500 space-y-1 list-disc pl-4">
+                        <li>上部メニュー「**Settings**」 ＞ 左メニュー「**Pages**」</li>
+                        <li>**Source**: 「Deploy from a branch」を選択</li>
+                        <li>**Branch**: 「main」と「/(root)」を選択して「Save」</li>
+                    </ul>
+                    <p class="mt-3 p-3 bg-accent/5 border border-accent/20 rounded-lg text-xs font-bold text-accent">
+                        ✅ 数分待つと、画面上部に公開URLが表示されます！
+                    </p>
                 </div>
             </div>
         </section>

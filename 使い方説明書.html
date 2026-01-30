@@ -1,608 +1,403 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html class="light" lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ココナラコンテンツマーケット 出品ジャンル診断 - 使い方説明書</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1f2975",
+                        "accent": "#DD047B",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#13141f",
+                    },
+                    fontFamily: {
+                        "display": ["Noto Sans JP", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <title>使い方説明書 - ココナラ出品ジャンル診断</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Noto Sans JP', sans-serif;
-            line-height: 1.8;
-            color: #333;
-            background: linear-gradient(135deg, #F8FAFF 0%, #FFF5F8 50%, #F0F4FF 100%);
-            padding: 40px 20px;
+            min-height: max(884px, 100dvh);
         }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 24px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
         }
 
-        .header {
-            background: linear-gradient(135deg, #1F2974 0%, #DD047B 100%);
-            color: white;
-            padding: 60px 40px;
-            text-align: center;
-        }
-
-        .header-icon {
-            font-size: 64px;
-            margin-bottom: 20px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        .header h1 {
-            font-size: 32px;
-            font-weight: 900;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .header .subtitle {
-            font-size: 18px;
-            opacity: 0.95;
-        }
-
-        .content {
-            padding: 50px 40px;
-        }
-
-        .section {
-            margin-bottom: 50px;
-        }
-
-        .section-title {
-            font-size: 26px;
-            font-weight: 700;
-            color: #1F2974;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #DD047B;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .section-title .material-icons {
-            font-size: 32px;
-            color: #DD047B;
-        }
-
-        .intro-box {
-            background: linear-gradient(135deg, #FFF5F8 0%, #F8FAFF 100%);
-            border-left: 5px solid #DD047B;
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            font-size: 16px;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .feature-card {
-            background: #F8FAFF;
-            border-radius: 16px;
-            padding: 25px;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 2px solid transparent;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(221, 4, 123, 0.2);
-            border-color: #DD047B;
-        }
-
-        .feature-card .material-icons {
-            font-size: 48px;
-            color: #DD047B;
-            margin-bottom: 15px;
-        }
-
-        .feature-card h3 {
-            font-size: 18px;
-            font-weight: 700;
-            color: #1F2974;
-            margin-bottom: 10px;
-        }
-
-        .feature-card p {
-            font-size: 14px;
-            color: #666;
-        }
-
-        .step-container {
-            counter-reset: step-counter;
-        }
-
-        .step {
-            position: relative;
-            padding-left: 80px;
-            margin-bottom: 35px;
-            padding-bottom: 35px;
-            border-left: 3px dashed #E8ECF0;
-        }
-
-        .step:last-child {
-            border-left: none;
-        }
-
-        .step::before {
-            counter-increment: step-counter;
-            content: counter(step-counter);
-            position: absolute;
-            left: -25px;
-            top: 0;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #DD047B 0%, #1F2974 100%);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: 700;
-            box-shadow: 0 4px 12px rgba(221, 4, 123, 0.3);
-        }
-
-        .step h3 {
-            font-size: 20px;
-            font-weight: 700;
-            color: #1F2974;
-            margin-bottom: 12px;
-        }
-
-        .step p {
-            color: #666;
-            margin-bottom: 8px;
-        }
-
-        .step ul {
-            list-style: none;
-            margin-top: 10px;
-        }
-
-        .step ul li {
-            padding-left: 25px;
-            position: relative;
-            margin-bottom: 8px;
-            color: #555;
-        }
-
-        .step ul li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #DD047B;
-            font-weight: 700;
-        }
-
-        .type-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .type-badge {
-            background: linear-gradient(135deg, #1F2974 0%, #DD047B 100%);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 12px;
-            text-align: center;
-            font-weight: 700;
-            font-size: 14px;
-            transition: transform 0.3s;
-        }
-
-        .type-badge:hover {
-            transform: scale(1.05);
-        }
-
-        .type-badge .type-name {
-            display: block;
-            font-size: 16px;
-            margin-bottom: 5px;
-        }
-
-        .type-badge .type-tagline {
-            display: block;
-            font-size: 11px;
-            opacity: 0.9;
-        }
-
-        .category-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 12px;
-            margin-top: 20px;
-        }
-
-        .category-item {
-            background: #FFF5F8;
-            padding: 12px 16px;
-            border-radius: 8px;
-            border-left: 4px solid #DD047B;
-            font-weight: 500;
-            color: #1F2974;
-            transition: background 0.3s;
-        }
-
-        .category-item:hover {
-            background: #FFE8F3;
-        }
-
-        .notice-box {
-            background: #FFF9E6;
-            border: 2px solid #FFD700;
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 20px;
-            display: flex;
-            gap: 15px;
-        }
-
-        .notice-box .material-icons {
-            color: #FF9800;
-            font-size: 32px;
-        }
-
-        .notice-box .notice-content {
-            flex: 1;
-        }
-
-        .notice-box h4 {
-            color: #FF9800;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .notice-box p {
-            color: #666;
-            font-size: 14px;
-        }
-
-        .troubleshoot-item {
-            background: #F8FAFF;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 15px;
-        }
-
-        .troubleshoot-item h4 {
-            color: #1F2974;
-            font-weight: 700;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .troubleshoot-item h4 .material-icons {
-            color: #DD047B;
-            font-size: 20px;
-        }
-
-        .troubleshoot-item p {
-            color: #666;
-            font-size: 14px;
-            padding-left: 28px;
-        }
-
-        .footer {
-            background: #1F2974;
-            color: white;
-            padding: 30px 40px;
-            text-align: center;
-        }
-
-        .footer .hashtags {
-            font-size: 18px;
-            font-weight: 700;
-            color: #DD047B;
-            margin-top: 10px;
-        }
-
-        .highlight {
-            background: linear-gradient(transparent 60%, #FFE8F3 60%);
-            font-weight: 700;
-            color: #DD047B;
-        }
-
-        @media print {
-            body {
-                background: white;
-                padding: 0;
-            }
-            
-            .container {
-                box-shadow: none;
-                max-width: 100%;
-            }
-            
-            .step::before {
-                box-shadow: none;
-            }
-            
-            .feature-card,
-            .type-badge {
-                break-inside: avoid;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 30px 20px;
-            }
-
-            .header {
-                padding: 40px 20px;
-            }
-
-            .header h1 {
-                font-size: 24px;
-            }
-
-            .section-title {
-                font-size: 22px;
-            }
-
-            .step {
-                padding-left: 60px;
-            }
-
-            .step::before {
-                width: 40px;
-                height: 40px;
-                left: -20px;
-                font-size: 20px;
-            }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <div class="header-icon">
-                <span class="material-icons" style="font-size: 64px;">auto_awesome</span>
-            </div>
-            <h1>ココナラコンテンツマーケット<br>出品ジャンル診断</h1>
-            <p class="subtitle">使い方説明書</p>
-        </div>
 
-        <div class="content">
-            <div class="section">
-                <div class="intro-box">
-                    <p>このツールは、ココナラコンテンツマーケットで出品を検討している方に向けて、<span class="highlight">8つの質問に答えるだけ</span>で最適な出品カテゴリを診断する無料のWebアプリケーションです。</p>
-                </div>
-            </div>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#121317] dark:text-white antialiased">
 
-            <div class="section">
-                <h2 class="section-title">
-                    <span class="material-icons">stars</span>
-                    主な機能
-                </h2>
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <span class="material-icons">psychology</span>
-                        <h3>パーソナライズ診断</h3>
-                        <p>8つの質問で、あなたのスキルや興味に最適なカテゴリを提案</p>
-                    </div>
-                    <div class="feature-card">
-                        <span class="material-icons">schedule</span>
-                        <h3>わずか2分</h3>
-                        <p>所要時間は約2分。スキマ時間で診断完了</p>
-                    </div>
-                    <div class="feature-card">
-                        <span class="material-icons">emoji_events</span>
-                        <h3>TOP3を表示</h3>
-                        <p>おすすめカテゴリのランキング形式で表示</p>
-                    </div>
-                    <div class="feature-card">
-                        <span class="material-icons">share</span>
-                        <h3>シェア機能</h3>
-                        <p>結果をXでシェアしたり、画像保存が可能</p>
-                    </div>
-                </div>
+    <!-- Top Navigation Bar -->
+    <nav
+        class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+        <div class="flex items-center px-4 py-3 justify-between max-w-md mx-auto">
+            <div class="flex flex-col">
+                <h1 class="text-primary dark:text-white text-sm font-bold leading-tight">ココナラコンテンツマーケット</h1>
+                <p class="text-xs text-gray-500 dark:text-gray-400">出品ジャンル診断</p>
             </div>
-
-            <div class="section">
-                <h2 class="section-title">
-                    <span class="material-icons">play_circle</span>
-                    使い方
-                </h2>
-                <div class="step-container">
-                    <div class="step">
-                        <h3>診断を開始</h3>
-                        <p>トップ画面で「診断をはじめる」ボタンをクリックして、質問画面に移動します。</p>
-                    </div>
-                    <div class="step">
-                        <h3>質問に答える</h3>
-                        <p>8つの質問が順番に表示されます。各質問に対して、最も当てはまる選択肢をクリックしてください。</p>
-                        <ul>
-                            <li>進捗バーで現在の進行状況を確認できます</li>
-                            <li>直感的に答えることをおすすめします</li>
-                        </ul>
-                    </div>
-                    <div class="step">
-                        <h3>結果を確認</h3>
-                        <p>すべての質問に答えると、自動的に診断結果が表示されます。</p>
-                        <ul>
-                            <li>あなたのタイプ名とキャッチフレーズ</li>
-                            <li>おすすめカテゴリTOP3</li>
-                            <li>各カテゴリへの直接リンク</li>
-                        </ul>
-                    </div>
-                    <div class="step">
-                        <h3>結果をシェア(任意)</h3>
-                        <p>診断結果は以下の方法でシェアできます:</p>
-                        <ul>
-                            <li><strong>Xでシェア:</strong> ボタンをクリックすると、画像がクリップボードにコピーされ、X投稿画面が開きます</li>
-                            <li><strong>画像を保存:</strong> PNG形式で診断結果画像をダウンロードできます</li>
-                        </ul>
-                    </div>
-                    <div class="step">
-                        <h3>再診断(任意)</h3>
-                        <p>「もう一度診断する」ボタンで、最初から診断をやり直すことができます。</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2 class="section-title">
-                    <span class="material-icons">groups</span>
-                    診断で判定される10のタイプ
-                </h2>
-                <div class="type-grid">
-                    <div class="type-badge">
-                        <span class="type-name">AI活用マスター</span>
-                        <span class="type-tagline">テクノロジーで可能性を拡げる</span>
-                    </div>
-                    <div class="type-badge">
-                        <span class="type-name">ビジネス戦略家</span>
-                        <span class="type-tagline">仕事の知恵で人を導く</span>
-                    </div>
-                    <div class="type-badge">
-                        <span class="type-name">効率化デザイナー</span>
-                        <span class="type-tagline">使える型で時間を生む</span>
-                    </div>
-                    <div class="type-badge">
-                        <span class="type-name">ココナラマスター</span>
-                        <span class="type-tagline">販売ノウハウで成功を共有</span>
-                    </div>
-                    <div class="type-badge">
-                        <span class="type-name">知識キュレーター</span>
-                        <span class="type-tagline">学びの道を照らす案内人</span>
-                    </div>
-                    <div class="type-badge">
-                        <span class="type-name">マネーアドバイザー</span>
-                        <span class="type-tagline">お金の知恵で未来を拓く</span>
-                    </div>
-                    <div class="type-badge">
-                        <span class="type-name">ライフスタイリスト</span>
-                        <span class="type-tagline">暮らしの彩りを届ける</span>
-                    </div>
-                    <div class="type-badge">
-                        <span class="type-name">スピリチュアルガイド</span>
-                        <span class="type-tagline">心に寄り添い道を示す</span>
-                    </div>
-                    <div class="type-badge">
-                        <span class="type-name">エンタメキュレーター</span>
-                        <span class="type-tagline">好きを極めて魅力を伝える</span>
-                    </div>
-                    <div class="type-badge">
-                        <span class="type-name">ストーリーテラー</span>
-                        <span class="type-tagline">言葉で世界を紡ぐ</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2 class="section-title">
-                    <span class="material-icons">category</span>
-                    対応カテゴリ一覧
-                </h2>
-                <p style="margin-bottom: 15px;">診断では以下の12カテゴリから、あなたに最適なものを提案します:</p>
-                <div class="category-list">
-                    <div class="category-item">ビジネスノウハウ</div>
-                    <div class="category-item">ココナラノウハウ</div>
-                    <div class="category-item">学び</div>
-                    <div class="category-item">マネー・副業</div>
-                    <div class="category-item">テンプレート</div>
-                    <div class="category-item">占い</div>
-                    <div class="category-item">ライフスタイル</div>
-                    <div class="category-item">AI・テクノロジー</div>
-                    <div class="category-item">素材</div>
-                    <div class="category-item">趣味・エンタメ</div>
-                    <div class="category-item">作品</div>
-                    <div class="category-item">小説・コラム・エッセイ</div>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2 class="section-title">
-                    <span class="material-icons">warning</span>
-                    注意事項
-                </h2>
-                <div class="notice-box">
-                    <span class="material-icons">info</span>
-                    <div class="notice-content">
-                        <h4>AI生成コンテンツについて</h4>
-                        <p>一部のカテゴリ(テンプレート、AI・テクノロジー、素材、作品)では、AI生成イラスト・画像の販売は禁止されています。AI活用ノウハウ・使い方解説の出品はOKです。ココナラコンテンツマーケットの規約を必ず確認してください。</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2 class="section-title">
-                    <span class="material-icons">help_outline</span>
-                    トラブルシューティング
-                </h2>
-                <div class="troubleshoot-item">
-                    <h4>
-                        <span class="material-icons">content_copy</span>
-                        画像のコピーができない
-                    </h4>
-                    <p>ブラウザのクリップボード権限を確認してください。HTTPSでアクセスしていることも確認してください。</p>
-                </div>
-                <div class="troubleshoot-item">
-                    <h4>
-                        <span class="material-icons">visibility_off</span>
-                        診断結果が表示されない
-                    </h4>
-                    <p>ブラウザをリロードしてください。JavaScriptが有効になっていることを確認してください。</p>
-                </div>
-                <div class="troubleshoot-item">
-                    <h4>
-                        <span class="material-icons">download</span>
-                        シェア画像がダウンロードできない
-                    </h4>
-                    <p>ブラウザのポップアップブロックを解除してください。ダウンロード権限を確認してください。</p>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2 class="section-title">
-                    <span class="material-icons">devices</span>
-                    技術仕様
-                </h2>
-                <div style="background: #F8FAFF; padding: 20px; border-radius: 12px;">
-                    <p><strong>対応ブラウザ:</strong> Chrome、Firefox、Safari、Edge(最新版)</p>
-                    <p><strong>レスポンシブデザイン:</strong> スマートフォン、タブレット、PC対応</p>
-                    <p><strong>オフライン動作:</strong> 不可(初回読み込み時にインターネット接続が必要)</p>
-                </div>
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-accent text-xl">help</span>
+                <span class="text-xs font-bold text-gray-600 dark:text-gray-300">ヘルプ</span>
             </div>
         </div>
+    </nav>
 
-        <div class="footer">
-            <p>お問い合わせ: おうちAIラボ</p>
-            <p class="hashtags">#おうちAIラボ #SHIFTAI</p>
-            <p style="margin-top: 20px; font-size: 14px; opacity: 0.8;">最終更新日: 2026年1月30日</p>
+    <main class="max-w-md mx-auto pb-20">
+
+        <!-- Hero Header -->
+        <header class="relative px-4 py-8 overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-primary via-[#2a38a3] to-accent opacity-90"></div>
+            <div class="relative z-10 py-6">
+                <span
+                    class="inline-block px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold tracking-wider mb-3">PROFESSIONAL
+                    GUIDE</span>
+                <h2 class="text-white text-3xl font-extrabold leading-tight mb-2 tracking-tight">使い方説明書</h2>
+                <p class="text-white/80 text-sm leading-relaxed max-w-[80%]">
+                    8つの質問に答えるだけで、あなたにピッタリの出品カテゴリがわかります。所要時間は約2分。
+                </p>
+            </div>
+            <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
+        </header>
+
+        <!-- Feature Carousel -->
+        <section class="mt-8">
+            <div class="px-4 mb-4 flex items-center justify-between">
+                <h3 class="text-lg font-bold text-primary dark:text-white">主な機能</h3>
+                <span class="text-xs text-gray-400">Swipe →</span>
+            </div>
+            <div class="flex overflow-x-auto gap-4 px-4 pb-6 snap-x no-scrollbar">
+                <!-- Feature 1 -->
+                <div
+                    class="min-w-[160px] bg-white dark:bg-gray-900 p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 snap-start">
+                    <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
+                        <span class="material-symbols-outlined text-primary">psychology</span>
+                    </div>
+                    <p class="text-sm font-bold mb-1">パーソナライズ診断</p>
+                    <p class="text-[11px] text-gray-500">あなたに最適化</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div
+                    class="min-w-[160px] bg-white dark:bg-gray-900 p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 snap-start">
+                    <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-3">
+                        <span class="material-symbols-outlined text-accent">schedule</span>
+                    </div>
+                    <p class="text-sm font-bold mb-1">わずか2分</p>
+                    <p class="text-[11px] text-gray-500">スキマ時間で完了</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div
+                    class="min-w-[160px] bg-white dark:bg-gray-900 p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 snap-start">
+                    <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
+                        <span class="material-symbols-outlined text-primary">emoji_events</span>
+                    </div>
+                    <p class="text-sm font-bold mb-1">TOP3を表示</p>
+                    <p class="text-[11px] text-gray-500">おすすめランキング</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div
+                    class="min-w-[160px] bg-white dark:bg-gray-900 p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 snap-start">
+                    <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-3">
+                        <span class="material-symbols-outlined text-accent">share</span>
+                    </div>
+                    <p class="text-sm font-bold mb-1">シェア機能</p>
+                    <p class="text-[11px] text-gray-500">X投稿・画像保存</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vertical Timeline Steps -->
+        <section class="px-4 mt-8">
+            <h3 class="text-lg font-bold text-primary dark:text-white mb-6">診断の流れ</h3>
+            <div class="relative pl-8 space-y-10">
+                <!-- Vertical Line -->
+                <div class="absolute left-[15px] top-2 bottom-2 w-0.5 bg-gray-200 dark:bg-gray-800"></div>
+
+                <!-- Step 1 -->
+                <div class="relative">
+                    <div
+                        class="absolute -left-[33px] flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white text-sm font-bold ring-4 ring-white dark:ring-background-dark">
+                        1</div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 dark:text-white mb-2">診断を開始</h4>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                            <li>・トップ画面で「診断をはじめる」をクリック</li>
+                            <li>・質問画面に移動します</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative">
+                    <div
+                        class="absolute -left-[33px] flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white text-sm font-bold ring-4 ring-white dark:ring-background-dark">
+                        2</div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 dark:text-white mb-2">質問に答える</h4>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                            <li>・8つの質問が順番に表示されます</li>
+                            <li>・最も当てはまる選択肢をクリック</li>
+                            <li>・進捗バーで進行状況を確認できます</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative">
+                    <div
+                        class="absolute -left-[33px] flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white text-sm font-bold ring-4 ring-white dark:ring-background-dark">
+                        3</div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 dark:text-white mb-2">結果を確認</h4>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                            <li>・あなたのタイプ名とキャッチフレーズ</li>
+                            <li>・おすすめカテゴリTOP3</li>
+                            <li>・各カテゴリへの直接リンク</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="relative">
+                    <div
+                        class="absolute -left-[33px] flex items-center justify-center w-8 h-8 rounded-full bg-accent text-white text-sm font-bold ring-4 ring-white dark:ring-background-dark">
+                        4</div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 dark:text-white mb-2">結果をシェア(任意)</h4>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                            <li>・Xでシェア: 画像が自動コピーされます</li>
+                            <li>・画像を保存: PNG形式でダウンロード</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Types Section -->
+        <section class="mt-12 px-4">
+            <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 border border-gray-100 dark:border-gray-800">
+                <h3 class="text-base font-bold text-primary dark:text-white mb-4">診断で判定される10のタイプ</h3>
+                <div class="mb-6">
+                    <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3">10 TYPES</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-3 py-1.5 bg-primary/5 text-primary border border-primary/20 rounded-full text-xs font-medium">🤖
+                            AI活用マスター</span>
+                        <span
+                            class="px-3 py-1.5 bg-primary/5 text-primary border border-primary/20 rounded-full text-xs font-medium">💼
+                            ビジネス戦略家</span>
+                        <span
+                            class="px-3 py-1.5 bg-primary/5 text-primary border border-primary/20 rounded-full text-xs font-medium">⚡
+                            効率化デザイナー</span>
+                        <span
+                            class="px-3 py-1.5 bg-primary/5 text-primary border border-primary/20 rounded-full text-xs font-medium">🌟
+                            ココナラマスター</span>
+                        <span
+                            class="px-3 py-1.5 bg-primary/5 text-primary border border-primary/20 rounded-full text-xs font-medium">📚
+                            知識キュレーター</span>
+                        <span
+                            class="px-3 py-1.5 bg-primary/5 text-primary border border-primary/20 rounded-full text-xs font-medium">💰
+                            マネーアドバイザー</span>
+                        <span
+                            class="px-3 py-1.5 bg-primary/5 text-primary border border-primary/20 rounded-full text-xs font-medium">🌸
+                            ライフスタイリスト</span>
+                        <span
+                            class="px-3 py-1.5 bg-primary/5 text-primary border border-primary/20 rounded-full text-xs font-medium">🔮
+                            スピリチュアルガイド</span>
+                        <span
+                            class="px-3 py-1.5 bg-primary/5 text-primary border border-primary/20 rounded-full text-xs font-medium">🎬
+                            エンタメキュレーター</span>
+                        <span
+                            class="px-3 py-1.5 bg-primary/5 text-primary border border-primary/20 rounded-full text-xs font-medium">✍️
+                            ストーリーテラー</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="mt-6 px-4">
+            <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 border border-gray-100 dark:border-gray-800">
+                <h3 class="text-base font-bold text-primary dark:text-white mb-4">対応カテゴリ一覧</h3>
+                <div>
+                    <p class="text-xs font-semibold text-accent/60 uppercase tracking-widest mb-3">12 CATEGORIES</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-3 py-1.5 bg-accent/5 text-accent border border-accent/20 rounded-full text-xs font-medium">ビジネスノウハウ</span>
+                        <span
+                            class="px-3 py-1.5 bg-accent/5 text-accent border border-accent/20 rounded-full text-xs font-medium">ココナラノウハウ</span>
+                        <span
+                            class="px-3 py-1.5 bg-accent/5 text-accent border border-accent/20 rounded-full text-xs font-medium">学び</span>
+                        <span
+                            class="px-3 py-1.5 bg-accent/5 text-accent border border-accent/20 rounded-full text-xs font-medium">マネー・副業</span>
+                        <span
+                            class="px-3 py-1.5 bg-accent/5 text-accent border border-accent/20 rounded-full text-xs font-medium">テンプレート</span>
+                        <span
+                            class="px-3 py-1.5 bg-accent/5 text-accent border border-accent/20 rounded-full text-xs font-medium">占い</span>
+                        <span
+                            class="px-3 py-1.5 bg-accent/5 text-accent border border-accent/20 rounded-full text-xs font-medium">ライフスタイル</span>
+                        <span
+                            class="px-3 py-1.5 bg-accent/5 text-accent border border-accent/20 rounded-full text-xs font-medium">AI・テクノロジー</span>
+                        <span
+                            class="px-3 py-1.5 bg-accent/5 text-accent border border-accent/20 rounded-full text-xs font-medium">素材</span>
+                        <span
+                            class="px-3 py-1.5 bg-accent/5 text-accent border border-accent/20 rounded-full text-xs font-medium">趣味・エンタメ</span>
+                        <span
+                            class="px-3 py-1.5 bg-accent/5 text-accent border border-accent/20 rounded-full text-xs font-medium">作品</span>
+                        <span
+                            class="px-3 py-1.5 bg-accent/5 text-accent border border-accent/20 rounded-full text-xs font-medium">小説・コラム・エッセイ</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Warning Box -->
+        <section class="mt-8 px-4">
+            <div class="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-400 p-4 rounded-r-lg">
+                <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-amber-500 mt-0.5">warning</span>
+                    <div>
+                        <h4 class="text-sm font-bold text-amber-800 dark:text-amber-200">AI生成コンテンツについて</h4>
+                        <p class="text-xs text-amber-700 dark:text-amber-300 mt-1 leading-relaxed">
+                            一部のカテゴリ(テンプレート、AI・テクノロジー、素材、作品)では、AI生成イラスト・画像の販売は禁止されています。AI活用ノウハウ・使い方解説の出品はOKです。ココナラコンテンツマーケットの規約を必ず確認してください。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Troubleshooting Accordion -->
+        <section class="mt-12 px-4">
+            <h3 class="text-lg font-bold text-primary dark:text-white mb-4">トラブルシューティング</h3>
+            <div class="space-y-3">
+                <div class="bg-white dark:bg-gray-900 rounded-lg border border-gray-100 dark:border-gray-800 p-4">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="material-symbols-outlined text-accent">content_copy</span>
+                        <span class="text-sm font-bold">画像のコピーができない</span>
+                    </div>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 pl-9">
+                        ブラウザのクリップボード権限を確認してください。HTTPSでアクセスしていることも確認してください。
+                    </p>
+                </div>
+
+                <div class="bg-white dark:bg-gray-900 rounded-lg border border-gray-100 dark:border-gray-800 p-4">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="material-symbols-outlined text-accent">visibility_off</span>
+                        <span class="text-sm font-bold">診断結果が表示されない</span>
+                    </div>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 pl-9">
+                        ブラウザをリロードしてください。JavaScriptが有効になっていることを確認してください。
+                    </p>
+                </div>
+
+                <div class="bg-white dark:bg-gray-900 rounded-lg border border-gray-100 dark:border-gray-800 p-4">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="material-symbols-outlined text-accent">download</span>
+                        <span class="text-sm font-bold">シェア画像がダウンロードできない</span>
+                    </div>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 pl-9">
+                        ブラウザのポップアップブロックを解除してください。ダウンロード権限を確認してください。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Specs -->
+        <section class="mt-8 px-4">
+            <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 border border-gray-100 dark:border-gray-800">
+                <h3 class="text-base font-bold text-primary dark:text-white mb-4">技術仕様</h3>
+                <div class="space-y-3 text-sm">
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-primary text-xl">devices</span>
+                        <div>
+                            <p class="font-semibold text-gray-900 dark:text-white">対応ブラウザ</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Chrome、Firefox、Safari、Edge(最新版)</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-primary text-xl">smartphone</span>
+                        <div>
+                            <p class="font-semibold text-gray-900 dark:text-white">レスポンシブデザイン</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">スマートフォン、タブレット、PC対応</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-primary text-xl">cloud_off</span>
+                        <div>
+                            <p class="font-semibold text-gray-900 dark:text-white">オフライン動作</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">不可(初回読み込み時にインターネット接続が必要)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Area -->
+        <footer class="mt-16 bg-primary dark:bg-gray-900 py-10 px-6 text-center rounded-t-[2.5rem]">
+            <div class="flex justify-center gap-4 mb-6">
+                <span class="text-white/40 text-xs">#おうちAIラボ</span>
+                <span class="text-white/40 text-xs">#SHIFTAI</span>
+                <span class="text-white/40 text-xs">#ココナラ</span>
+            </div>
+            <p class="text-white/60 text-xs mb-8">
+                お問い合わせ: おうちAIラボ
+            </p>
+            <a href="index.html"
+                class="block w-full bg-accent hover:bg-accent/90 text-white font-bold py-4 rounded-xl shadow-lg transition-colors flex items-center justify-center gap-2">
+                診断を開始する
+                <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
+            <p class="mt-8 text-[10px] text-white/30 uppercase tracking-[0.2em]">
+                最終更新日: 2026年1月30日
+            </p>
+        </footer>
+    </main>
+
+    <!-- Mobile Bottom Navigation -->
+    <div
+        class="fixed bottom-0 left-0 right-0 bg-white/90 dark:bg-black/90 backdrop-blur-md border-t border-gray-200 dark:border-gray-800 flex justify-around py-3 px-4 max-w-md mx-auto z-50">
+        <a href="index.html" class="flex flex-col items-center text-primary">
+            <span class="material-symbols-outlined">home</span>
+            <span class="text-[10px] font-bold">ホーム</span>
+        </a>
+        <div class="flex flex-col items-center text-gray-400">
+            <span class="material-symbols-outlined">description</span>
+            <span class="text-[10px]">使い方</span>
+        </div>
+        <div class="flex flex-col items-center text-gray-400">
+            <span class="material-symbols-outlined">share</span>
+            <span class="text-[10px]">シェア</span>
         </div>
     </div>
+
 </body>
+
 </html>

@@ -23,13 +23,7 @@
                     },
                     fontFamily: {
                         "display": ["Noto Sans JP", "sans-serif"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
+                    }
                 },
             },
         }
@@ -37,35 +31,31 @@
     <title>ツールの作り方 - ココナラ出品ジャンル診断</title>
     <style>
         body {
-            min-height: max(100vh, 100dvh);
+            min-height: 100dvh;
         }
 
-        pre {
+        .prompt-box {
             background: #1e293b;
-            color: #f8fafc;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            overflow-x: auto;
-            font-size: 0.875rem;
+            color: #e2e8f0;
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            font-family: ui-monospace, monospace;
+            font-size: 0.825rem;
+            line-height: 1.6;
             margin: 1rem 0;
-            line-height: 1.5;
-        }
-
-        code {
-            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            position: relative;
         }
     </style>
 </head>
 
 <body class="bg-background-light dark:bg-background-dark font-display text-[#121317] dark:text-white antialiased">
 
-    <!-- Top Navigation Bar -->
     <nav
         class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
         <div class="flex items-center px-4 py-3 justify-between max-w-md mx-auto">
             <div class="flex flex-col">
                 <h1 class="text-primary dark:text-white text-sm font-bold leading-tight">ココナラコンテンツマーケット</h1>
-                <p class="text-xs text-gray-500 dark:text-gray-400">開発ガイド</p>
+                <p class="text-xs text-gray-500 dark:text-gray-400">作成ガイド</p>
             </div>
             <a href="index.html" class="flex items-center gap-2 hover:opacity-70 transition-opacity">
                 <span class="material-symbols-outlined text-accent text-xl">home</span>
@@ -75,177 +65,146 @@
     </nav>
 
     <main class="max-w-md mx-auto pb-24">
-
-        <!-- Hero Header -->
-        <header class="relative px-4 py-10 overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-br from-[#1f2975] via-[#2a38a3] to-[#DD047B] opacity-90"></div>
-            <div class="relative z-10 py-6">
-                <span
-                    class="inline-block px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold tracking-wider mb-3 uppercase">Developer
-                    Guide</span>
-                <h2 class="text-white text-3xl font-extrabold leading-tight mb-2 tracking-tight">ツールの作り方</h2>
-                <p class="text-white/80 text-sm leading-relaxed max-w-[90%]">
-                    HTML/CSS/JSだけで構築する、本格的な診断ツールの作成ステップをわかりやすく解説します。
+        <header class="relative px-6 py-12 overflow-hidden bg-gradient-to-br from-[#1f2975] to-[#DD047B] text-white">
+            <div class="relative z-10">
+                <span class="inline-block px-3 py-1 rounded-full bg-white/20 text-[10px] font-bold mb-3">BEGINNER
+                    GUIDE</span>
+                <h2 class="text-3xl font-black leading-tight mb-2">自分専用の<br>診断ツールを作ろう</h2>
+                <p class="text-white/80 text-sm">
+                    プログラミングの知識がなくても、AIの力を借りれば自分だけのオリジナルツールは数分で作れます。
                 </p>
             </div>
-            <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
         </header>
 
-        <!-- Intro -->
+        <!-- Step 1: Prompting -->
         <section class="p-6">
-            <div
-                class="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-800">
-                <h3 class="text-lg font-bold text-primary dark:text-white mb-3">概要</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                    このガイドでは、ココナラコンテンツマーケット向けの診断ツールをゼロから作成する方法を解説します。バックエンド不要で、静的なHTMLファイルのみで動作します。
+            <div class="flex items-center gap-3 mb-4">
+                <span
+                    class="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white text-sm font-bold">1</span>
+                <h3 class="text-lg font-bold text-primary">AIへの伝え方</h3>
+            </div>
+            <div class="bg-white dark:bg-gray-900 rounded-2xl p-5 shadow-sm border border-gray-100 mb-4">
+                <p class="text-sm text-gray-600 mb-4">
+                    ClaudeやChatGPTなどのAIに、以下をそのまま伝えてみてください。これが「設計図」になります。
                 </p>
-            </div>
-        </section>
-
-        <!-- Steps -->
-        <section class="px-6 space-y-8">
-            <h3 class="text-xl font-bold text-primary dark:text-white">ステップ 1-10</h3>
-
-            <div class="relative space-y-12">
-                <div class="absolute left-[15.5px] top-2 bottom-2 w-px bg-gray-200 dark:bg-gray-800"></div>
-
-                <!-- Step 1 -->
-                <div class="flex gap-6 items-start">
-                    <div
-                        class="relative flex-shrink-0 w-8 h-8 rounded-full bg-primary text-white text-sm font-bold ring-4 ring-white dark:ring-background-dark z-10 flex items-center justify-center">
-                        1
-                    </div>
-                    <div
-                        class="flex-1 bg-white dark:bg-gray-900 rounded-xl p-5 border border-gray-100 dark:border-gray-800">
-                        <h4 class="font-bold text-gray-900 dark:text-white mb-2">プロジェクトの準備</h4>
-                        <p class="text-xs text-gray-500 mb-3">フォルダ構成と画像素材の用意</p>
-                        <pre><code>project/
-├── index.html
-├── style.css
-├── app.js
-└── image/ (各タイプのイラスト)</code></pre>
-                    </div>
-                </div>
-
-                <!-- Step 2 -->
-                <div class="flex gap-6 items-start">
-                    <div
-                        class="relative flex-shrink-0 w-8 h-8 rounded-full bg-primary text-white text-sm font-bold ring-4 ring-white dark:ring-background-dark z-10 flex items-center justify-center">
-                        2
-                    </div>
-                    <div
-                        class="flex-1 bg-white dark:bg-gray-900 rounded-xl p-5 border border-gray-100 dark:border-gray-800">
-                        <h4 class="font-bold text-gray-900 dark:text-white mb-2">HTMLの作成</h4>
-                        <p class="text-xs text-gray-500 mb-3">4つの画面（スタート・質問・ロード・結果）を構築</p>
-                        <ul class="text-xs text-gray-600 dark:text-gray-400 space-y-1">
-                            <li>・各画面を &lt;section&gt; で定義</li>
-                            <li>・表示切り替え用のクラスを付与</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Step 3 -->
-                <div class="flex gap-6 items-start">
-                    <div
-                        class="relative flex-shrink-0 w-8 h-8 rounded-full bg-primary text-white text-sm font-bold ring-4 ring-white dark:ring-background-dark z-10 flex items-center justify-center">
-                        3
-                    </div>
-                    <div
-                        class="flex-1 bg-white dark:bg-gray-900 rounded-xl p-5 border border-gray-100 dark:border-gray-800">
-                        <h4 class="font-bold text-gray-900 dark:text-white mb-2">CSSの作成</h4>
-                        <p class="text-xs text-gray-500 mb-3">Flexbox/GridによるモダンなUIデザイン</p>
-                        <ul class="text-xs text-gray-600 dark:text-gray-400 space-y-1">
-                            <li>・カラーパレットの定義</li>
-                            <li>・レスポンシブ対応（メディアクエリ）</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Step 4 -->
-                <div class="flex gap-6 items-start">
-                    <div
-                        class="relative flex-shrink-0 w-8 h-8 rounded-full bg-primary text-white text-sm font-bold ring-4 ring-white dark:ring-background-dark z-10 flex items-center justify-center">
-                        4
-                    </div>
-                    <div
-                        class="flex-1 bg-white dark:bg-gray-900 rounded-xl p-5 border border-gray-100 dark:border-gray-800">
-                        <h4 class="font-bold text-gray-900 dark:text-white mb-2">JavaScriptの実装</h4>
-                        <p class="text-xs text-gray-500 mb-3">診断ロジックとスコアリング</p>
-                        <pre><code>// スコアを集計してタイプを決定
-function calculateResult() {
-  const sorted = Object.entries(scores)
-    .sort((a, b) => b[1] - a[1]);
-  // TOP1のカテゴリに紐づくタイプを表示
-}</code></pre>
-                    </div>
-                </div>
-
-                <!-- Step 5 -->
-                <div class="flex gap-6 items-start">
-                    <div
-                        class="relative flex-shrink-0 w-8 h-8 rounded-full bg-primary text-white text-sm font-bold ring-4 ring-white dark:ring-background-dark z-10 flex items-center justify-center">
-                        5
-                    </div>
-                    <div
-                        class="flex-1 bg-white dark:bg-gray-900 rounded-xl p-5 border border-gray-100 dark:border-gray-800">
-                        <h4 class="font-bold text-gray-900 dark:text-white mb-2">シェア機能の実装</h4>
-                        <p class="text-xs text-gray-500 mb-3">Canvas APIでの画像生成</p>
-                        <p class="text-[11px] text-gray-500 leading-relaxed">
-                            Xでの自動コピー機能やPNGダウンロード機能を実装し、ユーザーの拡散を促します。
-                        </p>
-                    </div>
-                </div>
-
-                <!-- More steps can be condensed or linked -->
-                <div class="flex gap-6 items-start">
-                    <div
-                        class="relative flex-shrink-0 w-8 h-8 rounded-full bg-accent text-white text-sm font-bold ring-4 ring-white dark:ring-background-dark z-10 flex items-center justify-center font-bold">
-                        ...
-                    </div>
-                    <div class="flex-1 bg-accent/5 dark:bg-accent/10 rounded-xl p-5 border border-accent/20">
-                        <h4 class="font-bold text-accent mb-2">続きのステップ</h4>
-                        <p class="text-xs text-gray-600 dark:text-gray-400">
-                            アニメーションの追加、デプロイ（GitHub Pages/Netlify）、カスタマイズ方法は詳細ガイドをご覧ください。
-                        </p>
-                    </div>
+                <div class="prompt-box">
+                    「ココナラの診断ツールを作りたいです。HTML1ファイルで完結させてください。
+                    要件は、8つの質問に答えると、自分にぴったりの出品カテゴリを3つ提案してくれるものです。」
                 </div>
             </div>
         </section>
 
-        <!-- Final Call to Action -->
-        <section class="mt-12 px-6">
-            <div class="bg-primary text-white rounded-3xl p-8 text-center shadow-xl">
-                <span class="material-symbols-outlined text-4xl mb-4">terminal</span>
-                <h3 class="text-xl font-black mb-3">自分だけの診断ツールを作ろう</h3>
-                <p class="text-sm opacity-80 mb-8 leading-relaxed">
-                    このソースコードは自由に改変・商用利用可能です。自分だけのオリジナルツールとして公開してみてください。
-                </p>
-                <div class="flex flex-col gap-3">
-                    <a href="ツールの作り方.md"
-                        class="bg-white text-primary font-bold py-3 rounded-xl hover:bg-gray-100 transition-colors inline-flex items-center justify-center gap-2">
-                        <span class="material-symbols-outlined">description</span>
-                        Markdown完全版を見る
-                    </a>
-                    <a href="index.html"
-                        class="bg-accent text-white font-bold py-3 rounded-xl hover:bg-accent/90 transition-colors inline-flex items-center justify-center gap-2">
-                        <span class="material-symbols-outlined">play_circle</span>
-                        完成したツールを確認
-                    </a>
+        <!-- Step 2: Requirements -->
+        <section class="p-6 pt-0">
+            <div class="flex items-center gap-3 mb-4">
+                <span
+                    class="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white text-sm font-bold">2</span>
+                <h3 class="text-lg font-bold text-primary">要件定義のコツ</h3>
+            </div>
+            <div class="bg-white dark:bg-gray-900 rounded-2xl p-5 shadow-sm border border-gray-100">
+                <p class="text-sm text-gray-600 mb-4 font-bold">AIに伝えると「精度」が上がる3つの項目</p>
+                <ul class="space-y-4">
+                    <li class="flex gap-3">
+                        <span class="material-symbols-outlined text-accent">check_circle</span>
+                        <div>
+                            <p class="text-sm font-bold">質問数と判定タイプ</p>
+                            <p class="text-xs text-gray-500">「8問の質問で、10タイプの中から診断する」など具体的に伝えましょう。</p>
+                        </div>
+                    </li>
+                    <li class="flex gap-3">
+                        <span class="material-symbols-outlined text-accent">check_circle</span>
+                        <div>
+                            <p class="text-sm font-bold">デザインの雰囲気</p>
+                            <p class="text-xs text-gray-500">「大人っぽく」「ポップに」「グラデーションを使って」など指定します。</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Step 3: Publishing -->
+        <section class="p-6 pt-0">
+            <div class="flex items-center gap-3 mb-4">
+                <span
+                    class="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white text-sm font-bold">3</span>
+                <h3 class="text-lg font-bold text-primary">HTMLを公開する方法</h3>
+            </div>
+            <div class="flex gap-4 mb-6">
+                <div class="w-1 bg-accent/20 rounded-full"></div>
+                <div>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        AIが書いたコードを保存して、ネット上で誰でも見られるようにする「ホスティング」という作業が必要です。
+                        今回は**「GitHub Pages」**という無料の仕組みを使います。
+                    </p>
                 </div>
             </div>
         </section>
 
-        <!-- Footer -->
-        <footer
-            class="mt-16 bg-white dark:bg-gray-900 py-10 px-6 text-center border-t border-gray-100 dark:border-gray-800">
-            <span class="text-xs font-bold text-primary dark:text-white tracking-widest uppercase">Ouchi AI Lab</span>
-            <p class="mt-4 text-[10px] text-gray-400 uppercase tracking-[0.2em]">
-                © 2026 Developer Guide for Content Market
-            </p>
+        <!-- Step 4: GitHub Pages -->
+        <section class="p-6 pt-0">
+            <div class="flex items-center gap-3 mb-4">
+                <span
+                    class="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white text-sm font-bold">4</span>
+                <h3 class="text-lg font-bold text-primary">無料公開の4ステップ</h3>
+            </div>
+            <div class="space-y-4">
+                <div class="bg-white dark:bg-gray-900 rounded-xl p-4 border border-gray-100">
+                    <p class="text-xs font-bold text-accent mb-1">Step 4-1</p>
+                    <p class="text-sm font-bold">GitHubにアカウントを作る</p>
+                </div>
+                <div class="bg-white dark:bg-gray-900 rounded-xl p-4 border border-gray-100">
+                    <p class="text-xs font-bold text-accent mb-1">Step 4-2</p>
+                    <p class="text-sm font-bold">「New Repository」から名前をつけて箱を作る</p>
+                </div>
+                <div class="bg-white dark:bg-gray-900 rounded-xl p-4 border border-gray-100">
+                    <p class="text-xs font-bold text-accent mb-1">Step 4-3</p>
+                    <p class="text-sm font-bold">HTMLファイルをアップロードする</p>
+                </div>
+                <div class="bg-white dark:bg-gray-900 rounded-xl p-4 border border-gray-100">
+                    <p class="text-xs font-bold text-accent mb-1">Step 4-4</p>
+                    <p class="text-sm font-bold">Settings > Pages で「公開」をオンにする</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 5: List -->
+        <section class="p-6 pt-0">
+            <div class="flex items-center gap-3 mb-4">
+                <span
+                    class="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white text-sm font-bold">5</span>
+                <h3 class="text-lg font-bold text-primary">できること・できないこと</h3>
+            </div>
+            <div class="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-100">
+                <table class="w-full text-sm text-left">
+                    <thead class="bg-gray-50 dark:bg-gray-800">
+                        <tr>
+                            <th class="p-4 font-bold border-b">できること</th>
+                            <th class="p-4 font-bold border-b">できないこと</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        <tr>
+                            <td class="p-4 text-xs">診断ツールの公開</td>
+                            <td class="p-4 text-xs font-bold text-accent">会員登録システムの作成</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 text-xs">SNSシェアボタンの設置</td>
+                            <td class="p-4 text-xs">DBへの診断内容の保存</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 text-xs">画像の表示・DL機能</td>
+                            <td class="p-4 text-xs text-gray-400">（※工夫すれば外部連携は可能）</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <footer class="mt-8 text-center text-[10px] text-gray-400 py-10">
+            © 2026 Ouchi AI Lab - Build with AI
         </footer>
     </main>
 
-    <!-- Mobile Bottom Navigation -->
     <div
         class="fixed bottom-0 left-0 right-0 bg-white/90 dark:bg-black/90 backdrop-blur-md border-t border-gray-200 dark:border-gray-800 grid grid-cols-2 py-3 px-4 max-w-md mx-auto z-50">
         <a href="index.html" class="flex flex-col items-center text-gray-400 hover:text-primary transition-colors">
@@ -257,7 +216,6 @@ function calculateResult() {
             <span class="text-[10px]">使い方</span>
         </a>
     </div>
-
 </body>
 
 </html>

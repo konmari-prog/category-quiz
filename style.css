@@ -885,9 +885,11 @@ body {
 }
 
 /* ===================================
-   レスポンシブ対応
+   レスポンシブデザイン
 =================================== */
-@media (max-width: 360px) {
+
+/* 極小スマホ (320px以下) */
+@media (max-width: 320px) {
     .screen {
         padding: 24px 16px;
     }
@@ -898,6 +900,35 @@ body {
 
     .question-text {
         font-size: 18px;
+    }
+
+    .option-btn {
+        padding: 14px 16px;
+        font-size: 13px;
+    }
+
+    .type-name {
+        font-size: 22px;
+    }
+
+    .result-card {
+        padding: 28px 20px;
+    }
+
+    .type-image-container {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* 小型スマホ (321px - 480px) */
+@media (max-width: 480px) {
+    .title-main {
+        font-size: 28px;
+    }
+
+    .question-text {
+        font-size: 20px;
     }
 
     .option-btn {
@@ -912,8 +943,17 @@ body {
     .result-card {
         padding: 32px 24px;
     }
+
+    .share-buttons {
+        flex-direction: column;
+    }
+
+    .share-btn {
+        width: 100%;
+    }
 }
 
+/* タブレット (768px以上) */
 @media (min-width: 768px) {
     body {
         display: flex;
@@ -924,13 +964,14 @@ body {
 
     .app-container {
         min-height: auto;
+        max-width: 600px;
     }
 
     .screen {
         min-height: auto;
         border-radius: 32px;
         box-shadow: var(--shadow-xl);
-        background: rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
     }
@@ -951,7 +992,134 @@ body {
         padding: 80px 48px;
         background: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-navy-light) 50%, var(--primary-pink) 100%);
     }
+
+    .title-main {
+        font-size: 36px;
+    }
+
+    .question-text {
+        font-size: 24px;
+    }
+
+    .option-btn {
+        padding: 22px 28px;
+        font-size: 16px;
+    }
+
+    .type-name {
+        font-size: 32px;
+    }
+
+    .type-image-container {
+        width: 180px;
+        height: 180px;
+    }
 }
+
+/* デスクトップ (1024px以上) */
+@media (min-width: 1024px) {
+    .app-container {
+        max-width: 640px;
+    }
+
+    .screen {
+        border-radius: 40px;
+    }
+
+    #start-screen {
+        padding: 80px 64px;
+    }
+
+    #question-screen {
+        padding: 64px;
+    }
+
+    #result-screen {
+        padding: 64px;
+    }
+
+    .start-content {
+        max-width: 480px;
+    }
+
+    .option-btn:hover {
+        transform: translateY(-4px);
+    }
+
+    .category-item:hover {
+        transform: translateY(-4px);
+    }
+}
+
+/* 大型デスクトップ (1440px以上) */
+@media (min-width: 1440px) {
+    .app-container {
+        max-width: 720px;
+    }
+
+    .screen {
+        padding: 80px;
+    }
+}
+
+/* 横向きスマホ対応 */
+@media (max-height: 600px) and (orientation: landscape) {
+    .screen {
+        padding: 20px 24px;
+        min-height: auto;
+    }
+
+    #start-screen {
+        padding: 32px 24px;
+    }
+
+    .logo-icon {
+        font-size: 40px;
+    }
+
+    .title-main {
+        font-size: 24px;
+    }
+
+    .description {
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+
+    .start-btn {
+        padding: 14px 36px;
+        font-size: 14px;
+    }
+
+    .question-text {
+        font-size: 18px;
+        margin-bottom: 24px;
+    }
+
+    .type-image-container {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* プリント用 */
+@media print {
+    body {
+        background: white;
+    }
+
+    .screen {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+
+    .share-section,
+    .retry-btn,
+    .coconala-link {
+        display: none;
+    }
+}
+
 
 /* ===================================
    スクロールバーのカスタマイズ

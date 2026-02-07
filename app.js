@@ -369,7 +369,8 @@ async function shareToX() {
 
 #おうちAIラボ #SHIFTAI`;
 
-    const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+    const quoteUrl = 'https://x.com/SHIFT_AI_0/status/2017175969837264941';
+    const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(quoteUrl)}`;
 
     window.open(shareUrl, '_blank', 'width=600,height=400');
 }
